@@ -1,6 +1,5 @@
 import React,{useState,useEffect,useCallback} from 'react';
 import './quiz.css';
-//import Question from './question';
 import Answers from './answer';
 import Button  from './button';
 import CategoriesInfo from './categoriesId';
@@ -24,7 +23,6 @@ const[totalQuestions,setTotalQuestions]=useState(10);
 const[difficulty,setDifficulty]=useState("easy");
 const[gameOver,setGameOver]=useState("off");
 
-//-----------------------------------
  const fetchApi=useCallback(() => {
 
 	 fetch(`https://opentdb.com/api.php?amount=${totalQuestions}&category=${categoryId}&difficulty=${difficulty}`)
@@ -40,13 +38,12 @@ const[gameOver,setGameOver]=useState("off");
   })
 },[totalQuestions,categoryId,difficulty])
 
-//----------------------------------------------------
 useEffect(()=>{
  fetchApi()
 },[fetchApi])
 //categoryId,difficulty,totalQuestions
 
-//---------------------------------------
+
 const StartBtn=()=>{
 	 setStart("off")
 	 setGameOver("off")
@@ -54,7 +51,7 @@ const StartBtn=()=>{
 	 setRestart("off")
       	
 }
-//-------------------------------------------------
+
 
 const nextQuestion=()=>{
   setIndex(index+1); 
@@ -65,7 +62,7 @@ const nextQuestion=()=>{
   setPrevbtn(true)
 
 }
-//------------------------------------------
+
 const prevQuestion=()=>{
    index<totalQuestions && setIndex(index-1); 
    index<=totalQuestions && setQuestion(dataArray[index-1].question);
@@ -75,20 +72,19 @@ const prevQuestion=()=>{
    index<=totalQuestions-1 && setNextbtn(true)
 }
 
-//------------------------
+
 const restartBtn=()=>{
 	setStart("on")
 	setGameOver("on")
 	setRestart("on")
 }
-//--------------------
 const finishBtn=()=>{
 setGameOver("on")
 setStart("on")
 setIndex(0)
 setRestart("off")
 }
-//----------------------------------
+
 const raqam=index+1
  const allAnswer=[...incorrAnswer,corrAnswer]
   
@@ -98,19 +94,19 @@ const raqam=index+1
  	
   }
 
-//--------------------------
+
 const checkAnswer=(e)=>{
 	setUserAnswer(e.target.value);
     e.target.value===corrAnswer && setScore(score+1)
 	
 	}
-//-------------------------------------------------
+
 	const optionId=(e)=>{
     setCategoryId(e.target.value)
    // CategoriesInfo[categoryId] !== undefined && fetchApi();
 
 	}
-	//-----------------------------------
+	
 	const DifficultyBtn=(e)=>{
      setDifficulty(e.target.value)
 	}
@@ -119,7 +115,6 @@ const checkAnswer=(e)=>{
   setTotalQuestions(e.target.value)
 	}
 	
-//-------------------------------------------
 
   return (
     <div className="quiz-app">
